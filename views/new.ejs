@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Post</title>
+    <style>
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+   
+        body {
+            font-family: "Overpass", sans-serif;
+            background: linear-gradient(to right, #f5f7fa, #e0e7ff);
+            color: #333;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-weight: 900;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #1e293b;
+        }
+
+        h1 span {
+            color: cornflowerblue;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+
+   
+        label {
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+   
+        input[type="text"],
+        textarea {
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            border-color: cornflowerblue;
+            box-shadow: 0 0 8px rgba(100,149,237,0.3);
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button {
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            background-color: cornflowerblue;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #3a78d1;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+
+    
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1><span>Add</span> New Post</h1>
+    <form action="/posts" method="POST">
+        <label for="author">Name</label>
+        <input type="text" id="author" name="author" placeholder="Enter Your Name" required>
+
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" placeholder="Enter Subject Name" required>
+
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" placeholder="Enter Title" required>
+
+        <label for="content">Content</label>
+        <textarea id="content" name="content" placeholder="Write your doubt here..." required></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

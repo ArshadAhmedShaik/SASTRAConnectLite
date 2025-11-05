@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SASTRA Connect!</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <h1>
+            <img src="/images/sastra.png" alt="SASTRA Logo" class="logo">
+            <span>SASTRA</span> Connect!
+        </h1>
+    </header>
+
+    <main class="container">
+        <% if (posts.length === 0) { %>
+            <p class="no-posts">No doubts posted yet. Be the first to post!</p>
+        <% } %>
+
+        <% for (let post of posts) { %>
+            <article class="post-card">
+                <header class="post-header">
+                    <h2 class="post-title"><%= post.title %></h2>
+                    <span class="post-subject"><%= post.subject %></span>
+                </header>
+                <div class="post-body">
+                    <p class="post-content"><%= post.content || "No description provided." %></p>
+                </div>
+                <footer class="post-footer">
+                    <small>Posted by: <strong><%= post.author %></strong></small>
+                </footer>
+                <div class="post-buttons">
+                    <a href="/posts/<%= post.id %>"><button class="view-post-btn" type="button">View Post</button></a>
+                    <a href="/posts/<%= post.id %>/edit"><button class="edit-post-btn" type="button">Edit Post</button></a>
+                </div>
+            </article>
+        <% } %>
+    </main>
+
+    <a href="/posts/new"><button type="button">Add New Post</button></a>
+</body>
+
+</html>

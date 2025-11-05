@@ -1,0 +1,180 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Overpass", sans-serif;
+    background: linear-gradient(to right, #f5f7fa, #e0e7ff);
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    perspective: 1000px;
+}
+
+h1 {
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 3rem;
+    letter-spacing: 1px;
+}
+
+h1 span {
+    color: cornflowerblue;
+    text-shadow: 1px 1px 2px #bbb;
+}
+
+.header h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.post-card {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1), 0 15px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.post-card:hover {
+    transform: translateY(-15px) rotateX(5deg) rotateY(5deg);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2), 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.post-card .post-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #1e293b;
+}
+
+.post-card .post-subject {
+    display: inline-block;
+    background-color: cornflowerblue;
+    color: #fff;
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.post-card .post-body {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.post-card .post-footer {
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.post-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.view-post-btn,
+.edit-post-btn {
+    padding: 10px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.view-post-btn {
+    background-color: #4caf50;
+}
+
+.view-post-btn:hover {
+    background-color: #45a049;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+.view-post-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.edit-post-btn {
+    background-color: #ff9800;
+}
+
+.edit-post-btn:hover {
+    background-color: #e68900;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+.edit-post-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+button {
+    display: block;
+    margin: 30px auto;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: aliceblue;
+    background-color: cornflowerblue;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+a {
+    text-decoration: none;
+}
+
+button:hover {
+    background-color: #3a78d1;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .post-card {
+        padding: 20px;
+    }
+}
