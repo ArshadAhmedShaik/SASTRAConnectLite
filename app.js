@@ -142,6 +142,17 @@ app.post("/posts", (req, res) => {
     res.redirect("posts");
 });
 
+app.delete("/posts/:id/comments/:commentid", (req, res) => {
+        let { id , commentid} = req.params;
+        let post = posts.find((p) => {
+            return p.id === id;
+        });
+        post.comments = post.comments.filter((c) => {
+                return c.id !== commentid;
+        });
+        res.render("show", { post });
+});
+
 app.get("/posts/:id", (req, res) => {
     let { id } = req.params;
     let post = posts.find((p) => {
