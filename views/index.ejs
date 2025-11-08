@@ -52,13 +52,14 @@
                             <a href="/posts/<%= post.id %>"><button class="view-post-btn" type="button">View
                                     Post</button></a>
                             <a href="/posts/<%= post.id %>/edit"><button class="edit-post-btn" type="button">Edit
-                                    Post</button></a>     
+                                    Post</button></a>  
+                                    <form method="POST" action="/posts/<%= post.id %>/like">
+                                <button class="like-button">❤️ <%= post.likes %></button>
+                        </form>      
                         </div>
 
 
-                        <form method="POST" action="/posts/<%= post.id %>/like">
-                                <button class="like-button">❤️ <%= post.likes %></button>
-                        </form>                          
+                                               
 
                     </article>
                     <% } %>
