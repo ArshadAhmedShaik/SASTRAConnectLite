@@ -16,7 +16,13 @@ app.use(express.urlencoded(
 ));
 app.use(methodOverride('_method'));
 
+function randomNumberOfLikes() {
+    return Math.floor(Math.random() * 101);
+}
+
 // I used array as in-memory Storage
+
+let defaultDate = new Date().toLocaleString();
 
 let posts = [
     {
@@ -28,7 +34,9 @@ let posts = [
         comments: [
             { id: uuidv4(), content: "Excited to use this platform! 😄" },
             { id: uuidv4(), content: "Finally a place to share my notes!" }
-        ]
+        ],
+        date: defaultDate,
+        likes: randomNumberOfLikes()
     },
     {
         id: uuidv4(),
@@ -39,7 +47,9 @@ let posts = [
         comments: [
             { id: uuidv4(), content: "Sure! GET, POST, PUT, DELETE correspond to read, create, update, delete. Docs have examples too." },
             { id: uuidv4(), content: "You can check my GitHub repo, I have a small project showing this." }
-        ]
+        ],
+        date: defaultDate,
+        likes: randomNumberOfLikes()
     },
     {
         id: uuidv4(),
@@ -51,7 +61,9 @@ let posts = [
             { id: uuidv4(), content: "Proteus is good for beginners." },
             { id: uuidv4(), content: "I always use Multisim, it makes debugging circuits easier." },
             { id: uuidv4(), content: "LTSpice is free and powerful if you’re okay with a learning curve." }
-        ]
+        ],
+        date: defaultDate,
+        likes: randomNumberOfLikes()
     },
     {
         id: uuidv4(),
@@ -62,7 +74,9 @@ let posts = [
         comments: [
             { id: uuidv4(), content: "I have a PDF, I can send it over." },
             { id: uuidv4(), content: "Check the lecture slides, they cover most of it." }
-        ]
+        ],
+        date: defaultDate,
+        likes: randomNumberOfLikes()
     },
     {
         id: uuidv4(),
@@ -74,7 +88,9 @@ let posts = [
             { id: uuidv4(), content: "Break it into parts and use substitution method." },
             { id: uuidv4(), content: "Make sure to check limits after substitution!" },
             { id: uuidv4(), content: "Practice a few problems daily, it helps a lot." }
-        ]
+        ],
+        date: defaultDate,
+        likes: randomNumberOfLikes()
     },
     {
         id: uuidv4(),
@@ -85,7 +101,9 @@ let posts = [
         comments: [
             { id: uuidv4(), content: "You could make a note-sharing platform like this!" },
             { id: uuidv4(), content: "AI-based attendance tracker using face recognition is trending." }
-        ]
+        ],
+        date: defaultDate,
+        likes: randomNumberOfLikes()
     }
 ];
 
@@ -107,24 +125,24 @@ app.get("/posts/new", (req, res) => {
 });
 
 app.delete("/posts/:id", (req, res) => {
-        let { id } = req.params;
-        posts = posts.filter((p) => {
-            return p.id !== id;
-        });
-        res.redirect("/posts");
+    let { id } = req.params;
+    posts = posts.filter((p) => {
+        return p.id !== id;
+    });
+    res.redirect("/posts");
 });
 
 app.post("/posts/:id/comments", (req, res) => {
-        let { id } = req.params;
-        let post = posts.find((p) => {
-            return p.id === id;
-        });
-        let newComment = req.body;
-        console.log(newComment);
-        newComment.id = uuidv4();
-        console.log(newComment);
-        post.comments.push(newComment);
-        res.redirect(`/posts/${id}`);
+    let { id } = req.params;
+    let post = posts.find((p) => {
+        return p.id === id;
+    });
+    let newComment = req.body;
+    console.log(newComment);
+    newComment.id = uuidv4();
+    console.log(newComment);
+    post.comments.push(newComment);
+    res.redirect(`/posts/${id}`);
 })
 
 app.post("/posts", (req, res) => {
@@ -136,21 +154,34 @@ app.post("/posts", (req, res) => {
         content: content,
         author: author,
         subject: subject,
-        comments: []
+        comments: [],
+        date: new Date().toLocaleString(),
+        likes: 0
     }
     posts.push(newPost);
     res.redirect("posts");
 });
 
+app.post("/posts/:id/like", (req, res) => {
+    let { id } = req.params;
+    let post = posts.find((p) => {
+        return p.id === id;
+    });
+    if (post) {
+        post.likes += 1;
+    }
+    res.redirect(`/posts`);
+});
+
 app.delete("/posts/:id/comments/:commentid", (req, res) => {
-        let { id , commentid} = req.params;
-        let post = posts.find((p) => {
-            return p.id === id;
-        });
-        post.comments = post.comments.filter((c) => {
-                return c.id !== commentid;
-        });
-        res.render("show", { post });
+    let { id, commentid } = req.params;
+    let post = posts.find((p) => {
+        return p.id === id;
+    });
+    post.comments = post.comments.filter((c) => {
+        return c.id !== commentid;
+    });
+    res.render("show", { post });
 });
 
 app.get("/posts/:id", (req, res) => {
@@ -170,7 +201,7 @@ app.get("/posts/:id/edit", (req, res) => {
         return p.id === id;
     });
     res.render("edit", { post });
-        
+
 });
 
 app.put("/posts/:id", (req, res) => {

@@ -21,28 +21,47 @@
     </header>
 
     <main class="container">
-        <% if (posts.length === 0) { %>
+        <% if (posts.length===0) { %>
             <p class="no-posts">No doubts posted yet. Be the first to post!</p>
-        <% } %>
+            <% } %>
 
-        <% for (let post of posts) { %>
-            <article class="post-card">
-                <header class="post-header">
-                    <h2 class="post-title"><%= post.title %></h2>
-                    <span class="post-subject"><%= post.subject %></span>
-                </header>
-                <div class="post-body">
-                    <p class="post-content"><%= post.content || "No description provided." %></p>
-                </div>
-                <footer class="post-footer">
-                    <small>Posted by: <strong><%= post.author %></strong></small>
-                </footer>
-                <div class="post-buttons">
-                    <a href="/posts/<%= post.id %>"><button class="view-post-btn" type="button">View Post</button></a>
-                    <a href="/posts/<%= post.id %>/edit"><button class="edit-post-btn" type="button">Edit Post</button></a>
-                </div>
-            </article>
-        <% } %>
+                <% for (let post of posts) { %>
+                    <article class="post-card">
+                        <header class="post-header">
+                            <p style="color:cadetblue; text-align: end; font-size: 0.7rem; margin-bottom: 1rem;">Posted
+                                on <%= post.date %>
+                            </p>
+                            <h2 class="post-title">
+                                <%= post.title %>
+                            </h2>
+                            <span class="post-subject">
+                                <%= post.subject %>
+                            </span>
+                        </header>
+                        <div class="post-body">
+                            <p class="post-content">
+                                <%= post.content || "No description provided." %>
+                            </p>
+                        </div>
+                        <footer class="post-footer">
+                            <small>Posted by: <strong>
+                                    <%= post.author %>
+                                </strong></small>
+                        </footer>
+                        <div class="post-buttons">
+                            <a href="/posts/<%= post.id %>"><button class="view-post-btn" type="button">View
+                                    Post</button></a>
+                            <a href="/posts/<%= post.id %>/edit"><button class="edit-post-btn" type="button">Edit
+                                    Post</button></a>     
+                        </div>
+
+
+                        <form method="POST" action="/posts/<%= post.id %>/like">
+                                <button class="like-button">❤️ <%= post.likes %></button>
+                        </form>                          
+
+                    </article>
+                    <% } %>
     </main>
 
     <a href="/posts/new"><button type="button">Add New Post</button></a>

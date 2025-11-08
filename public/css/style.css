@@ -95,6 +95,22 @@ h1 span {
     gap: 10px;
     justify-content: center;
     margin-top: 15px;
+    align-items: center;
+}
+
+.like-button {
+    background-color: transparent;
+    color: black;
+    box-shadow: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+}
+
+.like-button:hover {
+    transform: none;
+    background-color: transparent;
 }
 
 .view-post-btn,
