@@ -111,6 +111,7 @@ h1 span {
 .like-button:hover {
     transform: none;
     background-color: transparent;
+    box-shadow: none;
 }
 
 .view-post-btn,
